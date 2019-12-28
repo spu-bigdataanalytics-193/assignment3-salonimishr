@@ -1,10 +1,22 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[2]:
+
+
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[2]:
+
+
 import os
 import glob
 import shutil
 import urllib3
 import functools
 import pandas as pd
-import utils
+import util
 
 
 DATA_SOURCE = 'http://stat-computing.org/dataexpo/2009'
@@ -55,7 +67,7 @@ def download_dataset():
             download_handler(file_path, data_url)
             
             # progress
-            utils.progressbar(len(year_range), ind + 1, 'download status: ')
+            util.progressbar(len(year_range), ind + 1, 'download status: ')
     else:
         print('data downloaded. you can skip this step or delete data folder to download again.')
 
@@ -63,7 +75,6 @@ def download_dataset():
 def read_as_dataframe():
     """
     Read all files into one single dataframe.
-
     PS: this should work, unfortunately, my computer is slow to load all into one. 
     I didn't try this code, but if this works, you only need to loop for the rows.
     """
@@ -72,3 +83,5 @@ def read_as_dataframe():
     df = pd.concat(map(par_func, file_list))
 
     return df
+
+
